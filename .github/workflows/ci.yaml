@@ -97,7 +97,7 @@ jobs:
 
       - name: Set up EKS kubeconfig
         run: |
-          aws eks --region us-east-1 update-kubeconfig --name flask-cluster
+          aws eks --region us-east-1 update-kubeconfig --name node-hostname
 
       - name: Install Helm
         run: |
