@@ -7,9 +7,6 @@ on:
       - main
     paths-ignore:
       - 'README.md'
-      - 'helm/**'
-      - 'k8s/**'
-
 jobs:
   build:
     runs-on: ubuntu-latest
