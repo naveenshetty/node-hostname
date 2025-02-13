@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-hostname
+  labels:
+    app: node-hostname
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-hostname
+  template:
+    metadata:
+      labels:
+        app: node-hostname
+    spec:
+      containers:
+      - name: node-hostname
+        image: naveen192/node-hostname:latest
+        ports:
+        - containerPort: 3000
