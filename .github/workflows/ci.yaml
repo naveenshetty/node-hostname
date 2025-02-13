@@ -93,9 +93,15 @@ jobs:
 
       - name: Set up kubectl
         run: |
-          curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.5/2021-10-11/bin/linux/amd64/kubectl
+          curl -LO "https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.5/2021-10-11/bin/linux/amd64/kubectl"
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin
+          kubectl version --client
+
+      - name: Verify kubectl download
+        run: |
+           file ./kubectl
+           ls -lh ./kubectl    
 
       - name: Set up EKS kubeconfig
         run: |
