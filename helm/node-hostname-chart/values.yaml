@@ -4,7 +4,7 @@ image:
   repository: naveen192/node-hostname
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "13307997214"
 
   ingress:
     enabled: false
