@@ -39,11 +39,11 @@ jobs:
 
       - name: Tag Docker image for ECR
         run: |
-          docker tag my-image:${{ github.run_id }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/node-hostname:${{ github.run_id }}
+         docker tag my-image:${{ github.run_id }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/node-hostname:${{ github.run_id }}
 
       - name: Push Docker image to ECR
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/node-hostname:${{ github.run_id }}
+         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/node-hostname:${{ github.run_id }}
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
