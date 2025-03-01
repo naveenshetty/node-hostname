@@ -5,7 +5,7 @@ image:
   repository: gcr.io/{{ .Values.gcrProject }}/node-hostname
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "13609116738"
+  tag: "13609359864"
 
   ingress:
     enabled: false
