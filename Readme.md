@@ -75,5 +75,45 @@ aws eks update-kubeconfig --name node-hostname
 * Above command deploys the AWS EBS CSI driver as an addon to Kubernetes cluster.
 * It uses the previously created IAM service account role to allow the driver to manage EBS volumes securely.
 
+** Installing elasticserch**
 
+`kubectl create namespace obser
+`
+**Install Elasticsearch on K8s**
+`helm install elasticsearch
+--set replicas=1
+--set volumeClaimTemplate.storageClassName=gp2
+--set persistence.labels.enabled=true elastic/elasticsearch -n obser`
 
+**Export Elasticsearch CA Certificate**
+* This command retrieves the CA certificate from the Elasticsearch master certificate secret and decodes it, saving it to a ca-cert.pem file.
+`kubectl get secret elasticsearch-master-certs -n obser -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca-cert.pem
+`
+
+**Create Secret for Elasticsearch TLS**
+* Creates a Kubernetes Secret in the tracing namespace, containing the CA certificate for Elasticsearch TLS communication.
+`kubectl create secret generic es-tls-secret --from-file=ca-cert.pem -n obser
+`
+**Retrieve Elasticsearch Username & Password**
+# for username
+kubectl get secrets --namespace=obser elasticsearch-master-credentials -ojsonpath='{.data.username}' | base64 -d
+# for password
+kubectl get secrets --namespace=obser elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
+
+* Retrieves the password for the Elasticsearch cluster's master credentials from the Kubernetes secret.
+
+**Install Opentelemetry-collector**
+* helm install otel-collector open-telemetry/opentelemetry-collector -n obser --values otel-collector-values.yaml
+
+**Install prometheus**
+`helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install  prometheus prometheus-community/prometheus -n obser --values prometheus-values.yaml`
+
+**Deploy the application either from ArgoCD using helm chart or manually using below**
+`kubectl apply -k k8s/
+`
+**WE can use some random script to create load, here I did not use**
+**Access the UI of Prometheus**
+`kubectl port-forward svc/prometheus-server 9090:80 -n obser
+`

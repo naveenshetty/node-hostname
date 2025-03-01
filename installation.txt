@@ -1,0 +1,6 @@
+gcloud container clusters create node-hostname \
+    --zone us-central1-c \
+    --num-nodes 1 \
+    --machine-type e2-medium \
+    --enable-autoscaling --min-nodes 2 --max-nodes 5 \
+    --enable-ip-alias
