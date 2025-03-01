@@ -1,4 +1,4 @@
-name: CI/CD for node hostname
+name: CI/CD for node-hostname
 
 # Exclude the workflows to run on changes to the helm chart
 on:
