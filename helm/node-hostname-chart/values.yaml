@@ -4,7 +4,7 @@ image:
   repository: gcr.io/intense-plate-450717-f0/node-hostname
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "13609359864"
+  tag: "13609408602"
 
   ingress:
     enabled: false
