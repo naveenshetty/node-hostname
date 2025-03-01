@@ -23,13 +23,13 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Set up Docker
+      - name: Configure Docker to use GCR
         run: gcloud auth configure-docker
 
       - name: Build and push Docker image to GCR
         env:
           GCR_REGISTRY: gcr.io
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_PROJECT_ID: intense-plate-450717-f0
           IMAGE_NAME: node-hostname
           IMAGE_TAG: ${{ github.run_id }}
         run: |

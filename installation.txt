@@ -4,3 +4,17 @@ gcloud container clusters create node-hostname \
     --machine-type e2-medium \
     --enable-autoscaling --min-nodes 2 --max-nodes 5 \
     --enable-ip-alias
+
+
+
+ gcloud projects add-iam-policy-binding intense-plate-450717-f0 \
+    --member="serviceAccount:github-actions-deploy@intense-plate-450717-f0.iam.gserviceaccount.com" \
+    --role="roles/storage.admin"
+
+ gcloud projects add-iam-policy-binding intense-plate-450717-f0 \
+    --member="serviceAccount:github-actions-deploy@intense-plate-450717-f0.iam.gserviceaccount.com" \
+    --role="roles/storage.objectAdmin"
+
+
+
+gcloud services list --enabled --project  intense-plate-450717-f0
