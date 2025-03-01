@@ -5,16 +5,20 @@ gcloud container clusters create node-hostname \
     --enable-autoscaling --min-nodes 2 --max-nodes 5 \
     --enable-ip-alias
 
+gcloud container clusters describe node-hostname --zone us-central1-c --format="yaml"
 
+Create service account first , use this account as New principle in permsion for GCR
 
- gcloud projects add-iam-policy-binding intense-plate-450717-f0 \
-    --member="serviceAccount:github-actions-deploy@intense-plate-450717-f0.iam.gserviceaccount.com" \
-    --role="roles/storage.admin"
-
- gcloud projects add-iam-policy-binding intense-plate-450717-f0 \
-    --member="serviceAccount:github-actions-deploy@intense-plate-450717-f0.iam.gserviceaccount.com" \
-    --role="roles/storage.objectAdmin"
-
-
+for Test in GCP console before ci
+docker build -t gcr.io/intense-plate-450717-f0/node-hostname:test .
+docker push gcr.io/intense-plate-450717-f0/node-hostname:test
 
 gcloud services list --enabled --project  intense-plate-450717-f0
+
+add this permison to the GCR , nevigate to GCR->select gcr.io-> permision->Add principle->select service account as "New principle"->select role as artifacts Adminstrator
+Artifact Registry Create-on-Push Repository Administrator (1)
+
+
+kubectl create namespace node-hostname
+
+gcr.io/intense-plate-450717-f0

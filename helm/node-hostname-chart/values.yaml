@@ -1,10 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: naveen192/node-hostname
+  repository: gcr.io/{{ .Values.gcrProject }}/node-hostname
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "13608394041"
+
+  gcrProject: "intense-plate-450717-f0"
 
   ingress:
     enabled: false
