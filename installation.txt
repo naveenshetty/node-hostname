@@ -22,3 +22,6 @@ Artifact Registry Create-on-Push Repository Administrator (1)
 kubectl create namespace node-hostname
 
 gcr.io/intense-plate-450717-f0
+
+for configuring HPA, when a node reaches 80% it automatically increase resources
+kubectl autoscale deployment node-hostname -n node-hostname --cpu-percent=80 --min=2 --max=5

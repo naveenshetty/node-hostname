@@ -1,4 +1,4 @@
-name: CI/CD for node-hostname which is in Node js
+name: CI/CD for node-hostname which is in Node js application
 
 # Exclude the workflows to run on changes to the helm chart
 on:

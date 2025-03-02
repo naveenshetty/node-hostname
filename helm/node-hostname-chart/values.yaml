@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: gcr.io/intense-plate-450717-f0/node-hostname
